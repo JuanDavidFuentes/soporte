@@ -33,12 +33,12 @@ const HerlpersUsuario = {
     return true
   },
 
-//   noexisteEmail:async(email)=>{
-//     if(email){
-//         const existe=await Usuario.findOne({email})
-//         if(!existe) throw new Error("Correo no existe Base de datos")
-//     }
-//   },
+  noexisteEmail:async(email)=>{
+    if(email){
+        const existe=await Usuario.findOne({email})
+        if(!existe) throw new Error("Correo no existe Base de datos")
+    }
+  },
 
   existeDocumento: async (documento) => {
     if (documento) {
