@@ -7,4 +7,4 @@ const CiudadSchema = new mongoose.Schema({
   codciudad: { type: String, required: true },
 });
 
-export default mongoose.model("Ciudad", CiudadSchema);
+export default mongoose.model("Ciudades", CiudadSchema);

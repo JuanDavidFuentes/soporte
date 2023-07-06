@@ -17,24 +17,16 @@ const usuarioPost=async(req,res)=>{
 
 const usuarioPut=async(req,res)=>{
     const {id} =req.params
-    const {tipoPersona,nombre,apellidos,documento,direccion,ciudad,celular,telefono,cargo,email,password,rol,contacto}=req.body
+    const {nombre,apellido,documento,direccion,celular,cargo,email,password,rol,foto,estado}=req.body
     let salt=bcryptjs.genSaltSync(10)
-    const usuario = await Usuario.findByIdAndUpdate(id,{tipoPersona,nombre,apellidos,documento,direccion,ciudad,celular,telefono,cargo,email,password,rol,contacto})
+    const usuario = await Usuario.findByIdAndUpdate(id,{nombre,apellido,documento,direccion,celular,cargo,email,password,rol,foto,estado})
+    usuario.email=email.toUpperCase();
     usuario.password=bcryptjs.hashSync(password,salt)
     res.json({
         usuario
     })
 }
 
-const usuarioPutRol=async(req,res)=>{
-    const {id} =req.params
-    const {rol}=req.body
-    const usuario = await Usuario.findByIdAndUpdate(id,{rol})
-    await usuario.save()
-    res.json({
-        usuario
-    })
-}
 
 const usuarioLogin=async(req, res)=>{
     const {email, password} = req.body;
@@ -71,12 +63,6 @@ const usuarioLogin=async(req, res)=>{
 
 const usuarioGetListarTodos=async(req,res)=>{
     const usuarios= await Usuario.find()
-    .populate({
-        path:"contacto",
-    })
-    .populate({
-        path:"ciudad",
-    })
     res.json({
         usuarios
     })
@@ -172,4 +158,4 @@ const usuarioPutDesactivar=async(req,res)=>{
     })
 }
 
-export {usuarioPost,usuarioPutRol,usuarioPut,usuarioPutActivar,usuarioPutDesactivar,cargarArchivoCloudPut,usuarioLogin,usuarioGetListarTodos,mostrarImagenCloud,usuarioGetListarid,usuarioGetListarNombre}
+export {usuarioPost,usuarioPut,usuarioPutActivar,usuarioPutDesactivar,cargarArchivoCloudPut,usuarioLogin,usuarioGetListarTodos,mostrarImagenCloud,usuarioGetListarid,usuarioGetListarNombre}

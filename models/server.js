@@ -4,6 +4,8 @@ import { dbConnection } from "../database/config.js";
 import fileupload from "express-fileupload";
 import usuario from "../routes/usuario.js";
 import ciudad from "../routes/ciudades.js";
+import maquina from "../routes/maquinas.js";
+import empresa from "../routes/empresas.js";
 
 class Server {
   constructor() {
@@ -34,6 +36,8 @@ class Server {
   routes() {
     this.app.use("/api/usuarios", usuario);
     this.app.use("/api/ciudades", ciudad);
+    this.app.use("/api/maquinas", maquina);
+    this.app.use("/api/empresas", empresa);
   }
 
   listen() {
