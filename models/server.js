@@ -6,6 +6,7 @@ import usuario from "../routes/usuario.js";
 import ciudad from "../routes/ciudades.js";
 import maquina from "../routes/maquinas.js";
 import empresa from "../routes/empresas.js";
+import envio from "../routes/envios.js";
 
 class Server {
   constructor() {
@@ -38,6 +39,7 @@ class Server {
     this.app.use("/api/ciudades", ciudad);
     this.app.use("/api/maquinas", maquina);
     this.app.use("/api/empresas", empresa);
+    this.app.use("/api/envios", envio);
   }
 
   listen() {

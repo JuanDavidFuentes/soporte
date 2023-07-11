@@ -5,6 +5,7 @@ const CiudadSchema = new mongoose.Schema({
   departamento: { type: String, required: true },
   ciudad: { type: String, required: true },
   codciudad: { type: String, required: true },
+  createdAt: { type: Date, default: Date.now() },
 });
 
 export default mongoose.model("Ciudades", CiudadSchema);
