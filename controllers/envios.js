@@ -37,7 +37,7 @@ const cargarArchivoCloud= async (req, res) => {
                         const [public_id] = nombreArchivo.split('.')
                         cloudinary.uploader.destroy(public_id)
                     }
-                    pelicula = await Envio.findByIdAndUpdate(id, { imgGuia: result.url })
+                    envio = await Envio.findByIdAndUpdate(id, { imgGuia: result.url })
                     //responder
                     res.json({ url: result.url });
                 } else {
@@ -115,7 +115,7 @@ const mostrarImagen= async (req, res) => {
 const envioPut = async ( req, res ) => {
     const { id } = req.params
     const { idMaquina, ciudad, empresa, numeroGuia, motivoEnvio, imgGuia } = req.body;
-    const envio = await Envio.findByIdAndUpdate({ idMaquina, ciudad, empresa, numeroGuia, motivoEnvio, imgGuia })
+    const envio = await Envio.findByIdAndUpdate( id, { idMaquina, ciudad, empresa, numeroGuia, motivoEnvio, imgGuia })
     res.json({
         "msg": `Envió editado satisfactoriamente con el numero de guía ${numeroGuia}`
     })
@@ -123,6 +123,15 @@ const envioPut = async ( req, res ) => {
 
 const envioGet = async (req, res) => {
     const envio = await Envio.find()
+    .populate({
+        path : "idMaquina"
+    })
+    .populate({
+        path : "ciudad"
+    })
+    .populate({
+        path : "empresa"
+    })
     res.json(envio)
 }
 
@@ -130,7 +139,7 @@ const desactivarEnvio = async (req, res) => {
     const { id } = req.params
     const desactivar = await Envio.findByIdAndUpdate(id, { estado: 0 })
     res.json({
-        " msg ": "Envió desactivada exitosamente"
+        " msg ": "Envió desactivado exitosamente"
     })
 }
 
@@ -138,7 +147,7 @@ const activarEnvio = async (req, res) => {
     const { id } = req.params
     const activar = await Envio.findByIdAndUpdate(id, { estado: 1 })
     res.json({
-        " msg ": "Envió activada exitosamente"
+        " msg ": "Envió activado exitosamente"
     })
 }
 

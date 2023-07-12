@@ -27,8 +27,8 @@ router.post('/',[
 
 router.put('/:id',[
     validarJWT,
-    check('id').isMongoId(HelpersEnvios.existEnvioById),
-    check('id').custom(),
+    check('id').isMongoId(),
+    check('id').custom(HelpersEnvios.existEnvioById),
     check("idMaquina" , "Elija una maquina o equipo porfavor").not().isEmpty(),
     check("idMaquina").isMongoId(),
     check("idMaquina").custom(HelpersMaquinas.existemaquinaById),
@@ -43,6 +43,16 @@ router.put('/:id',[
     validarCampos
 ], envioPut)
 
+router.get("/", envioGet )
+
+router.put("/cargarCloud/:id",[
+    validarJWT,
+    check('id').isMongoId(),
+    check('id').custom(HelpersEnvios.existEnvioById),
+    validarExistaArchivo,
+    validarCampos
+],cargarArchivoCloud);
+
 router.get("/uploadClou/:id",[ // img
     validarJWT,
     check('id', 'No es un ID válido').isMongoId(),
@@ -56,16 +66,6 @@ router.get("/upload/:id",[//img
     check('id').custom(HelpersEnvios.existEnvioById), 
     validarCampos   
 ],mostrarImagen)
-
-router.get("/", envioGet )
-
-router.put("/cargarCloud/:id",[
-    validarJWT,
-    check('id').isMongoId(),
-    check('id').custom(HelpersEnvios.existEnvioById),
-    validarExistaArchivo,
-    validarCampos
-],cargarArchivoCloud);
 
 router.put("/imgEditar/:id",[
     validarJWT,
