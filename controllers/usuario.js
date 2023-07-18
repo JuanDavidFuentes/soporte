@@ -22,6 +22,7 @@ const usuarioPut=async(req,res)=>{
     const usuario = await Usuario.findByIdAndUpdate(id,{nombre,apellido,documento,direccion,celular,email,password,rol,foto,estado})
     usuario.email=email.toUpperCase();
     usuario.password=bcryptjs.hashSync(password,salt)
+    await usuario.save()
     res.json({
         usuario
     })
