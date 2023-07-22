@@ -10,7 +10,8 @@ const crearEnvio = async (req, res) => {
     const envio = new Envio({ idMaquina, ciudad, empresa, numeroGuia, motivoEnvio, imgGuia })
     await envio.save()
     res.json({
-        "msg": `Envió registrado satisfactoriamente con el numero de guía ${numeroGuia}`
+        "msg": `Envió registrado satisfactoriamente con el numero de guía ${numeroGuia}`,
+        envio
     })
 }
 

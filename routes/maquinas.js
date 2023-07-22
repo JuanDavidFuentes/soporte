@@ -15,6 +15,8 @@ router.post("/", [
     check('serial', "El serial de la maquina es de máximo 200 letras").isLength({ max: 200 }),
     check('af', "El codigo af de la maquina es obligatorio").not().isEmpty(),
     check('af', "El codigo af de la maquina es de máximo 50 letras").isLength({ max: 50 }),
+    check('estadoMaquina', "El estado de la maquina es obligatorio").not().isEmpty(),
+    check('estadoMaquina', "El estado de la maquina debe de ser numerico").isNumeric(),
     validarCampos
 ], maquinaPost);
 
@@ -26,6 +28,8 @@ router.put("/:id", [
     check('serial', "El serial de la maquina es de máximo 200 letras").isLength({ max: 200 }),
     check('af', "El codigo af de la maquina es obligatorio").not().isEmpty(),
     check('af', "El codigo af de la maquina es de máximo 50 letras").isLength({ max: 50 }),
+    check('estadoMaquina', "El estado de la maquina es obligatorio").not().isEmpty(),
+    check('estadoMaquina', "El estado de la maquina debe de ser numerico").isNumeric(),
     check('id').isMongoId(),
     check('id').custom(HelpersMaquinas.existemaquinaById),
     validarCampos
