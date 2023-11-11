@@ -27,7 +27,7 @@ const desactivarempresas = async (req, res) => {
     const { id } = req.params
     const desactivar = await Empresas.findByIdAndUpdate(id, { estado: 0 })
     res.json({
-        " msg ": "Empresa desactivada exitosamente"
+        "msg": "Empresa desactivada exitosamente"
     })
 }
 
@@ -35,7 +35,7 @@ const activarempresas = async (req, res) => {
     const { id } = req.params
     const activar = await Empresas.findByIdAndUpdate(id, { estado: 1 })
     res.json({
-        " msg ": "Empresa activada exitosamente"
+        "msg": "Empresa activada exitosamente"
     })
 }
 

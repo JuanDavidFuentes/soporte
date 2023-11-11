@@ -140,7 +140,7 @@ const desactivarEnvio = async (req, res) => {
     const { id } = req.params
     const desactivar = await Envio.findByIdAndUpdate(id, { estado: 0 })
     res.json({
-        " msg ": "Envió desactivado exitosamente"
+        "msg": "Envió desactivado exitosamente"
     })
 }
 
@@ -148,7 +148,7 @@ const activarEnvio = async (req, res) => {
     const { id } = req.params
     const activar = await Envio.findByIdAndUpdate(id, { estado: 1 })
     res.json({
-        " msg ": "Envió activado exitosamente"
+        "msg": "Envió activado exitosamente"
     })
 }
 

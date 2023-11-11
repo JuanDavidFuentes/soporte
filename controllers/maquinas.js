@@ -27,7 +27,7 @@ const desactivarMaquina = async (req, res) => {
     const { id } = req.params
     const desactivar = await Maquinas.findByIdAndUpdate(id, { estado: 0 })
     res.json({
-        " msg ": " Maquina desactivada exitosamente"
+        "msg": " Maquina desactivada exitosamente"
     })
 }
 
@@ -35,7 +35,7 @@ const activarMaquina = async (req, res) => {
     const { id } = req.params
     const activar = await Maquinas.findByIdAndUpdate(id, { estado: 1 })
     res.json({
-        " msg ": " Maquina activada exitosamente"
+        "msg": " Maquina activada exitosamente"
     })
 }
 
